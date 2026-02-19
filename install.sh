@@ -158,6 +158,7 @@ copy_config() {
   sudo usermod -aG docker ${USER}
   sudo cp -r "${REPO}/etc/xdg" "/etc"
 
+  echo 'export COSMIC_DATA_CONTROL_ENABLED=1' | sudo tee /etc/profile.d/data_control_cosmic.sh > /dev/null
   echo ">>> Trying to change the shell..."
   chsh -s "/bin/zsh"
 }
