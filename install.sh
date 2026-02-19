@@ -157,7 +157,6 @@ copy_config() {
   sudo grub-mkconfig -o "/boot/grub/grub.cfg"
   sudo usermod -aG docker ${USER}
   sudo cp -r "${REPO}/etc/xdg" "/etc"
-  sudo cp -r "${REPO}/icons" "/usr/share"
 
   echo ">>> Trying to change the shell..."
   chsh -s "/bin/zsh"
