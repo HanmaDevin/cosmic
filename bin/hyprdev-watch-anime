@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ ! command ani-cli 2>/dev/null ]; then
+  kitty --hold -e yay -S "ani-cli" "ani-skip-git"
+fi
+
+ani-cli --rofi --skip
