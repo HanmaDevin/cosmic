@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 clear
 
-REPO="${HOME}/gnome"
+REPO="${HOME}/cosmic"
 CFG_PATH="${REPO}/.config"
 
 installPackages() {
@@ -209,6 +209,7 @@ configure_git
 
 sudo systemctl enable reflector
 sudo systemctl enable bluetooth
+sudo systemctl enable cosmic-greeter
 
 echo -e "${MAGENTA}"
 cat <<"EOF"
