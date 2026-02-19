@@ -7,7 +7,7 @@ CFG_PATH="${REPO}/.config"
 installPackages() {
   sudo pacman -Syu
 
-  local packages=("gum" "cosmic" "make" "debugedit" "fakeroot" "networkmanager-openvpn" "zip" "unzip" "man" "libreoffice" "fastfetch" "glow" "grub" "os-prober" "ntfs-3g" "reflector" "tree" "lazygit" "ufw" "zsh" "unzip" "wget" "eza" "gamemode" "steam" "zoxide" "fzf" "bat" "jdk21-openjdk" "docker" "ripgrep" "fd" "starship" "helix" "rustup" "wine" "python-pip" "pam-u2f" "pipewire-pulse" "pipewire-alsa" "pipewire-jack" "ttf-font-awesome" "git-delta" "ttf-nerd-fonts-symbols" "ttf-jetbrains-mono-nerd" "noto-fonts-emoji" "wireplumber" "libfido2" "xdg-desktop-portal-gtk" "xdg-desktop-portal-wlr" "gdb" "pacman-contrib" "libimobiledevice" "usbmuxd" "gvfs-gphoto2" "ifuse" "openvpn" "ncdu" "texlive" "inetutils" "net-tools" "wl-clipboard" "jq" "nodejs" "npm" "nm-connection-editor" "github-cli" "tealdeer" "wireguard-tools" "linux-headers" "ffmpeg4.4" "file-roller" "gamescope" "cmake" "meson" "pkg-config" "automake" "cpio" "bluez" "bluez-obex" "gcc" "power-profiles-daemon" "plymouth" "impression" "pinta" "papers" "loupe")
+  local packages=("gum" "cosmic" "make" "debugedit" "fakeroot" "networkmanager-openvpn" "zip" "unzip" "man" "libreoffice" "fastfetch" "glow" "grub" "os-prober" "ntfs-3g" "reflector" "tree" "lazygit" "ufw" "zsh" "unzip" "wget" "eza" "gamemode" "steam" "zoxide" "fzf" "bat" "jdk21-openjdk" "docker" "ripgrep" "fd" "starship" "helix" "rustup" "wine" "python-pip" "pam-u2f" "pipewire-pulse" "pipewire-alsa" "pipewire-jack" "ttf-font-awesome" "git-delta" "ttf-nerd-fonts-symbols" "ttf-jetbrains-mono-nerd" "noto-fonts-emoji" "wireplumber" "libfido2" "xdg-desktop-portal-gtk" "xdg-desktop-portal-wlr" "gdb" "pacman-contrib" "libimobiledevice" "usbmuxd" "gvfs-gphoto2" "ifuse" "openvpn" "ncdu" "texlive" "inetutils" "net-tools" "wl-clipboard" "jq" "nodejs" "npm" "nm-connection-editor" "github-cli" "tealdeer" "wireguard-tools" "linux-headers" "ffmpeg4.4" "file-roller" "gamescope" "cmake" "meson" "pkg-config" "automake" "cpio" "bluez" "bluez-obex" "gcc" "power-profiles-daemon" "plymouth" "impression" "pinta" "papers")
 
   for pkg in "${packages[@]}"; do
     sudo pacman -S --needed --noconfirm "${pkg}"
@@ -30,7 +30,7 @@ install_helix_utils() {
 }
 
 installAurPackages() {
-  local packages=("librewolf-bin" "vscodium-bin" "xpadneo-dkms" "openvpn3" "xwayland-satellite" "localsend-bin" "openvpn-update-systemd-resolved" "lazydocker" "ufw-docker" "qt-heif-image-plugin" "gradia" "luajit-tiktoken-bin" "vesktop")
+  local packages=("librewolf-bin" "vscodium-bin" "xpadneo-dkms" "openvpn3" "xwayland-satellite" "localsend-bin" "openvpn-update-systemd-resolved" "lazydocker" "ufw-docker" "qt-heif-image-plugin" "gradia" "cupola-git" "luajit-tiktoken-bin" "vesktop")
   for pkg in "${packages[@]}"; do
     yay -S --noconfirm "${pkg}"
   done

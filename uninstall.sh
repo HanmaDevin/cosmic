@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-packages=("cosmic" "file-roller" "impression" "papers" "loupe" "pinta")
+packages=("cosmic" "file-roller" "impression" "papers" "cupola" "pinta")
 
 for pkg in "${packages[@]}"; do
-  sudo pacman -Rns --noconfirm "${pkg}"
+  yay -Rns --noconfirm "${pkg}"
 done
