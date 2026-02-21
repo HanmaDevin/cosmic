@@ -30,7 +30,7 @@ install_helix_utils() {
 }
 
 installAurPackages() {
-  local packages=("librewolf-bin" "vscodium-bin" "xpadneo-dkms" "openvpn3" "xwayland-satellite" "localsend-bin" "openvpn-update-systemd-resolved" "lazydocker" "ufw-docker" "qt-heif-image-plugin" "gradia" "cupola-git" "luajit-tiktoken-bin" "vesktop")
+  local packages=("brave-bin" "vscodium-bin" "xpadneo-dkms" "openvpn3" "xwayland-satellite" "localsend-bin" "openvpn-update-systemd-resolved" "lazydocker" "ufw-docker" "qt-heif-image-plugin" "gradia" "cupola-git" "luajit-tiktoken-bin" "vesktop")
   for pkg in "${packages[@]}"; do
     yay -S --noconfirm "${pkg}"
   done
@@ -56,7 +56,7 @@ installDeepCoolDriver() {
 }
 
 configure_git() {
-  local  name email
+  local name email
   if gum confirm "Want to configure git?"; then
     name=$(gum input --prompt ">>> What is your user name? ")
     git config --global user.name "${name}"
@@ -85,9 +85,6 @@ detect_nvidia() {
     echo ">>> Nvidia GPU is present"
     gum spin --spinner dot --title "Installaling nvidia drivers now..." -- sleep 2
     sudo pacman -S --needed --noconfirm nvidia-open nvidia-utils nvidia-settings
-  else
-    echo ">>> It seems you are not using a Nvidia GPU"
-    echo ">>> If you have a Nvidia GPU then download the drivers yourself please :)"
   fi
 }
 
@@ -132,8 +129,6 @@ setup_firewall() {
 }
 
 copy_config() {
-  local theme bat
-
   gum spin --spinner dot --title "Creating Home..." -- sleep 2
   mkdir -p "${HOME}/Desktop"
   mkdir -p "${HOME}/Downloads"
@@ -155,10 +150,10 @@ copy_config() {
   sudo cp "${REPO}/etc/default/grub" "/etc/default"
   sudo plymouth-set-default-theme -R "arch-mac-style"
   sudo grub-mkconfig -o "/boot/grub/grub.cfg"
-  sudo usermod -aG docker ${USER}
+  sudo usermod -aG docker "${USER}"
   sudo cp -r "${REPO}/etc/xdg" "/etc"
 
-  echo 'export COSMIC_DATA_CONTROL_ENABLED=1' | sudo tee /etc/profile.d/data_control_cosmic.sh > /dev/null
+  echo 'export COSMIC_DATA_CONTROL_ENABLED=1' | sudo tee /etc/profile.d/data_control_cosmic.sh >/dev/null
   echo ">>> Trying to change the shell..."
   chsh -s "/bin/zsh"
 }
@@ -176,23 +171,23 @@ cat <<"EOF"
 
 EOF
 
-echo "HanmaDevin HyprLand Setup"
+echo "Cosmic Setup"
 echo -e "${NONE}"
 while true; do
   read -r -p ">>> Do you want to start the installation now? (y/n): " yn
   case ${yn} in
-    [Yy]*)
-      echo ">>> Installation started."
-      echo
-      break
-      ;;
-    [Nn]*)
-      echo ">>> Installation canceled"
-      exit
-      ;;
-    *)
-      echo ">>> Please answer yes or no."
-      ;;
+  [Yy]*)
+    echo ">>> Installation started."
+    echo
+    break
+    ;;
+  [Nn]*)
+    echo ">>> Installation canceled"
+    exit
+    ;;
+  *)
+    echo ">>> Please answer yes or no."
+    ;;
   esac
 done
 
@@ -205,7 +200,6 @@ copy_config
 detect_nvidia
 installDeepCoolDriver
 configure_git
-"${REPO}/bin/hyprdev-setup-fingerprint"
 
 sudo systemctl enable reflector
 sudo systemctl enable bluetooth
@@ -228,4 +222,3 @@ if gum confirm "Reboot now?"; then
 else
   exit 0
 fi
-
